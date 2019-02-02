@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     int CAMERA_IMAGE_REQUEST    =   900;
     String imageName;
 
+    ArrayList<String> detailsListItemArrayListObj     =   new ArrayList<>();
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -46,6 +48,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_IMAGE_REQUEST) {
+
+
+            detailsListItemArrayListObj.add("item 1");
+            detailsListItemArrayListObj.add("item 2");
+
+            mDetailslistAdapterObj  =   new DetailsListAdapter(detailsListItemArrayListObj,getApplicationContext());
+
+            mDetailsListRv.setAdapter(mDetailslistAdapterObj);
+
+            mDetailsListRv.invalidate();
 
 
 
@@ -81,12 +93,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mDetailsListRv.setLayoutManager(linearLayoutManager);
-
-
-        ArrayList<String> detailsListItemArrayListObj     =   new ArrayList<>();
-        detailsListItemArrayListObj.add("nil 1");
-        detailsListItemArrayListObj.add("nil 2");
-
 
 
         mDetailslistAdapterObj  =   new DetailsListAdapter(detailsListItemArrayListObj,getApplicationContext());
